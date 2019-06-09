@@ -1,0 +1,44 @@
+
+<html>
+    <head>
+        <title>Django Girls blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    </head>
+
+
+
+<body>
+
+
+</body>
+</html>
+
+
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="post">
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+
+        {% csrf_token %}
+
+        <form method="post">{% csrf_token %}
+        <h2  align="center">Você confirma a exclusão de: "{{ object }}" da sua base de dados ?</h2>
+        <input  class="btn btn-default btn-danger center-block" type="submit" value="Confirmar" align="center">
+        </form>
+
+
+        {% endif %}
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}
